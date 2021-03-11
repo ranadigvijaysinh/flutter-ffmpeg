@@ -536,7 +536,7 @@ class FlutterFFmpeg {
         if (singleQuoteStarted || doubleQuoteStarted) {
           currentArgument.write(String.fromCharCode(currentChar));
         } else if (currentArgument.length > 0) {
-          argumentList.add(currentArgument.toString());
+          argumentList.add(currentArgument.toString().replaceAll("\$", ' '));
           currentArgument = new StringBuffer();
         }
       } else if (currentChar == '\''.codeUnitAt(0) &&
@@ -563,7 +563,7 @@ class FlutterFFmpeg {
     }
 
     if (currentArgument.length > 0) {
-      argumentList.add(currentArgument.toString());
+      argumentList.add(currentArgument.toString().replaceAll("\$", ' '));
     }
 
     return argumentList;
